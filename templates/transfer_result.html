@@ -1,0 +1,22 @@
+<html>
+    <head>
+        <title>FIDOR Bank Services-Transfer Result</title>
+    </head>
+{% if fTransactionID %}  
+    <body>
+        <h1>Bank Transfer Completed (Transaction ID: {{ fTransactionID }})</h1>
+        <br>
+        <h2> SGD $ {{ famount }} is transferred to {{ fRecipientName }}</h2><br>
+        <h2> using recipient email : {{ custEmail }} </h2>
+        <br>
+        <h2> Transfer Remark : {{ fRemarks }}</h2><br>
+        <a href="services"><h2>Bank to Main Menu</h2></a><br>
+    </body>
+{% else %}    
+    <body>
+        <h1>No customers details</h1>
+        <a href="index">back to index</a>
+    </body>
+{% endif %}
+</html>
+

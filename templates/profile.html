@@ -1,0 +1,218 @@
+<html>
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<style>
+    .nav-link {
+        color: wheat;
+    }
+    
+    .navbar-nav .nav-item.active .nav-link,
+    .navbar-nav .nav-item:hover .nav-link {
+        color: white;
+    }
+    
+    .dropdown-menu {
+        background-color: #09143c;
+    }
+    
+    .dropdown-item {
+        color: white;
+    }
+    
+    .dropdown-item:hover {
+        background-color: grey;
+        color: wheat;
+    }
+    
+    body {
+        font-family: 'Product Sans';
+        overflow-x: hidden;
+    }
+    
+    #profile {
+        border: 1.5px solid wheat;
+        border-radius: 3px;
+        margin-top: -2.5px;
+    }
+    
+    #profileCard {
+        margin-left: auto;
+        margin-right: auto;
+        width: 50rem;
+        margin-top: 80px;
+        border: 1px solid white;
+        text-align: center;
+    }
+    
+    #profileName {
+        color: #09143c;
+    }
+    
+    #profileCardDetails {
+        font-size: 20px;
+        margin-top: 20px;
+    }
+    
+    #backToIndexBtn {
+        border-radius: 5px;
+        border: none;
+        color: white;
+        background-color: #09143c;
+        padding: 10px 27px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 20px;
+        margin: 4px 2px;
+    }
+    
+    #footer {
+        background-color: lightgray;
+    }
+    
+    a:hover {
+        color: inherit;
+    }
+    
+     ::-webkit-scrollbar {
+        display: none;
+    }
+    
+    #serviceTag {
+        position: fixed;
+        color: #09143c;
+        background: #bc9e38;
+        border-top: 1px solid #09143c;
+        border-right: 1px solid #09143c;
+        border-bottom: 1px solid #09143c;
+        border-top-right-radius: 5px;
+        border-bottom-right-radius: 5px;
+        padding: 10px;
+    }
+    
+    #backToHomeBtn {
+        border-radius: 5px;
+        border: none;
+        color: white;
+        background-color: #09143c;
+        padding: 10px 27px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 20px;
+        margin: 4px 2px;
+    }
+</style>
+
+{% include 'navbar.html' %}
+
+<body>
+    <h5 id="serviceTag">Customer<br>Profile</h5>
+    <h2 style="color: #09143c; text-align: center; margin-top: 90px;">Customer Profile</h2>
+    <div class="row" style="justify-content: center; margin-top: 20px;">
+        <div class="card" style="width: 40rem; border-radius: 10px; border: 1px solid #09143c;  text-align: center;">
+            <div class="card-body">
+                <h3 style="color:#09143c; margin-bottom: 30px;">Personal Information</h3>
+                <div class="row" style="justify-content: center;">
+                    <h5 class="col-sm-5" style="color: #09143c;">Title:</h5>
+                    <h5 class="col-sm-6" style="color: #bc9e38;">{{ customerInformation['title'] }}</h5>
+                </div>
+                <div class="row" style="justify-content: center; margin-top: 10px;">
+                    <h5 class="col-sm-5" style="color: #09143c;">First Name:</h5>
+                    <h5 class="col-sm-6" style="color: #bc9e38;">{{ customerInformation['first_name'] }}</h5>
+                </div>
+                <div class="row" style="justify-content: center; margin-top: 10px;">
+                    <h5 class="col-sm-5" style="color: #09143c;">Last Name:</h5>
+                    <h5 class="col-sm-6" style="color: #bc9e38;">{{ customerInformation['last_name'] }}</h5>
+                </div>
+                <div class="row" style="justify-content: center; margin-top: 10px;">
+                    <h5 class="col-sm-5" style="color: #09143c;">Gender:</h5>
+                    <h5 class="col-sm-6" style="color: #bc9e38;">Male</h5>
+                </div>
+                <div class="row" style="justify-content: center; margin-top: 10px;">
+                    <h5 class="col-sm-5" style="color: #09143c;">Date of Birth:</h5>
+                    <h5 class="col-sm-6" style="color: #bc9e38;">{{ customerInformation['birthday'][0:10] }}</h5>
+                </div>
+                <div class="row" style="justify-content: center; margin-top: 10px;">
+                    <h5 class="col-sm-5" style="color: #09143c;">Nationality:</h5>
+                    <h5 class="col-sm-6" style="color: #bc9e38;">{{ customerInformation['nationality'] }}</h5>
+                </div>
+                <div class="row" style="justify-content: center; margin-top: 10px;">
+                    <h5 class="col-sm-5" style="color: #09143c;">Marital Status:</h5>
+                    <h5 class="col-sm-6" style="color: #bc9e38;">{{ customerInformation['marital_status'] }}</h5>
+                </div>
+                <div class="row" style="justify-content: center; margin-top: 10px;">
+                    <h5 class="col-sm-5" style="color: #09143c;">Email Address:</h5>
+                    <h5 class="col-sm-6" style="color: #bc9e38;">{{ customerInformation['email'] }}</h5>
+                </div>
+                <div class="row" style="justify-content: center; margin-top: 10px;">
+                    <h5 class="col-sm-5" style="color: #09143c;">Mobile Number:</h5>
+                    <h5 class="col-sm-6" style="color: #bc9e38;">{{ customerInformation['adr_mobile'] }}</h5>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row" style="justify-content: center; margin-top: 20px;">
+        <div class="card" style="width: 40rem; border-radius: 10px; border: 1px solid #09143c;  text-align: center;">
+            <div class="card-body">
+                <h3 style="color:#09143c; margin-bottom: 30px;">Residential Information</h3>
+                <div class="row" style="justify-content: center;">
+                    <h5 class="col-sm-5" style="color: #09143c;">Street Name:</h5>
+                    <h5 class="col-sm-6" style="color: #bc9e38;">{{ customerInformation['adr_street'] }}</h5>
+                </div>
+                <div class="row" style="justify-content: center; margin-top: 10px;">
+                    <h5 class="col-sm-5" style="color: #09143c;">Street Number:</h5>
+                    <h5 class="col-sm-6" style="color: #bc9e38;">{{ customerInformation['adr_street_number'] }}</h5>
+                </div>
+                <div class="row" style="justify-content: center; margin-top: 10px;">
+                    <h5 class="col-sm-5" style="color: #09143c;">Postal Code:</h5>
+                    <h5 class="col-sm-6" style="color: #bc9e38;">{{ customerInformation['adr_post_code'] }}</h5>
+                </div>
+                <div class="row" style="justify-content: center; margin-top: 10px;">
+                    <h5 class="col-sm-5" style="color: #09143c;">City:</h5>
+                    <h5 class="col-sm-6" style="color: #bc9e38;">{{ customerInformation['adr_city'] }}</h5>
+                </div>
+                <div class="row" style="justify-content: center; margin-top: 10px;">
+                    <h5 class="col-sm-5" style="color: #09143c;">Country:</h5>
+                    <h5 class="col-sm-6" style="color: #bc9e38;">{{ customerInformation['adr_country'] }}</h5>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row" style="justify-content: center; margin-top: 20px;">
+        <div class="card" style="width: 40rem; border-radius: 10px; border: 1px solid #09143c;  text-align: center;">
+            <div class="card-body">
+                <h3 style="color:#09143c; margin-bottom: 30px;">Account Information</h3>
+                <div class="row" style="justify-content: center;">
+                    <h5 class="col-sm-5" style="color: #09143c;">Account Number:</h5>
+                    <h5 class="col-sm-6" style="color: #bc9e38;">{{ accountInformation['account_number'] }}</h5>
+                </div>
+                <div class="row" style="justify-content: center; margin-top: 10px;">
+                    <h5 class="col-sm-5" style="color: #09143c;">Available Balance:</h5>
+                    <h5 class="col-sm-6" style="color: #bc9e38;">SGD ${{ accountInformation['balance'] }}</h5>
+                </div>
+                <div class="row" style="justify-content: center; margin-top: 10px;">
+                    <h5 class="col-sm-5" style="color: #09143c;">Account Creation Date:</h5>
+                    <h5 class="col-sm-6" style="color: #bc9e38;">{{ accountInformation['created_at'][0:10] }}</h5>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div style="text-align: center; margin-top: 20px;">
+        <button id="backToHomeBtn">
+                <a href="menu" style="color: white; text-decoration: none;">Back to Home</a>
+            </button>
+    </div>
+
+</body>
+{% include 'footer.html' %}
+
+</html>

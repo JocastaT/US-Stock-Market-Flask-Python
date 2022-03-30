@@ -1,0 +1,273 @@
+@app.route("/process", methods=["POST"]) def process(): if request.method == "POST": token = session['oauth_token'] customersAccount = session['fidor_customer'] customerDetails = customersAccount['data'][0] customerInformation = customerDetails['customers'][0]
+fidorID = customerDetails['id'] custEmail = request.form['customerEmailAdd'] transferAmt = int(float(request.form['total'])*100) transferRemarks = request.form['transferRemarks'] transactionID = request.form['transactionID'] url = "https://api.tp.sandbox.fidorfzco.com/internal_transfers"
+payload = "{\n\t\"account_id\": \""+fidorID+"\",\n\t\"receiver\": \""+ \ custEmail+"\",\n\t\"external_uid\": \""+transactionID+"\",\n\t\"amount\": "+ \ str(transferAmt)+",\n\t\"subject\": \""+transferRemarks+"\"\n}\n" headers = { 'Accept': "application/vnd.fidor.de;
+version=1,text/json", 'Authorization': "Bearer "+token["access_token"], 'Content-Type': "application/json" } response = requests.request("POST", url, data=payload, headers=headers) print("process="+response.text) transactionDetails = json.loads(response.text)
+sendEmail = request.form['email'] msg = Message('Hello', sender = 'testing46011@gmail.com', recipients = [sendEmail]) msg.html = render_template('sent.html',TransactionID=transactionDetails["id"],createdTime = transactionDetails['created_at'],famount=(float(transactionDetails["amount"])/100))
+mail.send(msg) return render_template('transfer_result.html',fTransactionID=transactionDetails["id"],fRemarks=transactionDetails["subject"], famount=(float(transactionDetails["amount"])/100), fRecipientName=transactionDetails["recipient_name"],faccountid=transactionDetails["account_id"],
+fstate=transactionDetails['state'],createdTime = transactionDetails['created_at'], updatedTime= transactionDetails['updated_at'], fFirstName=customerInformation['first_name'],fLastName=customerInformation["last_name"])
+
+
+
+
+
+
+< HTML>
+
+
+
+    <html>
+    <!--from w3school v4 of the bootstrap need to have this 4 LINES!! to use it-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <title>FIDOR Bank</title>
+    <style>
+        .nav-link {
+            color: wheat;
+        }
+        
+        .navbar-nav .nav-item.active .nav-link,
+        .navbar-nav .nav-item:hover .nav-link {
+            color: white;
+        }
+        
+        .dropdown-menu {
+            background-color: #09143c;
+        }
+        
+        .dropdown-item {
+            color: white;
+        }
+        
+        .dropdown-item:hover {
+            background-color: grey;
+            color: wheat;
+        }
+        
+        body {
+            font-family: 'Product Sans';
+        }
+        
+        #profile {
+            border: 1.5px solid wheat;
+            border-radius: 3px;
+            margin-top: -2.5px;
+        }
+        
+        #profileCard {
+            margin-left: auto;
+            margin-right: auto;
+            width: 50rem;
+            margin-top: 50px;
+            border: 1px solid white;
+            text-align: center;
+        }
+        
+        #profileName {
+            color: #09143c;
+        }
+        
+        #profileCardDetails {
+            font-size: 20px;
+            margin-top: 20px;
+        }
+        
+        #backToIndexBtn {
+            border-radius: 5px;
+            border: none;
+            color: white;
+            background-color: #09143c;
+            padding: 10px 27px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 20px;
+            margin: 4px 2px;
+        }
+        
+        #footer {
+            background-color: lightgray;
+        }
+        
+        a:hover {
+            color: inherit;
+        }
+    </style>
+
+    <script>
+        function calculate(value) {
+            var y;
+            y = document.getElementById('rate').value;
+            total = value * y;
+            total = total.toFixed(2)
+            document.getElementById('total').value = total;
+        }
+    </script>
+
+    <script>
+        function validate() {
+            total = document.getElementById("total").value
+
+            if (total >= 500) {
+                text = ("Buy Amount Only Limited to $500");
+                document.getElementById("demo").innerHTML = text;
+                return false;
+            }
+        }
+    </script>
+
+    <script>
+        function check() {
+            if (document.getElementById('inlineRadio1').checked == true) {
+                document.getElementById("email").disabled = false;
+            }
+            if (document.getElementById('inlineRadio2').checked == true) {
+                document.getElementById("email").disabled = true;
+            }
+        }
+    </script>
+
+    <head>
+        <nav class="navbar navbar-expand-sm fixed-top" style="background-color:#09143c;">
+            <a class="navbar-brand" href="#">
+                <img src="https://www.fidor.de/images/original/86f13a81fe623515767a5a65c5c766e5b34219da3502.png" style="width:5em">
+            </a>
+
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="GBPPrice">GBP/SGD</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="USDPrice">USD/SGD</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="EURPrice">EUR/SGD</a>
+                </li>
+            </ul>
+        </nav>
+    </head>
+
+    <body>
+        <h2 style="margin-left: 100px; margin-top: 20px;"> FIDOR Bank Account ({{ fAccountNo }}) - Balance $ {{ fBalance }}</h2>
+        <br>
+        <form action="process" method="post" style="margin-left: 100px;">
+            <!--process()-->
+            <div class="mb-3" style="width: 50%;">
+                <label for="fidorID" class="form-label">FIDOR ID</label>
+                <input type="text" class="form-control readonly" id="fidorID" placeholder="Another input placeholder" value="{{ fFIDORID }}" readonly>
+            </div>
+
+            <!--Recipient Email Address: <input type="text" name="customerEmailAdd" value="" required><br><br>-->
+            <div class="mb-3" style="width: 50%;">
+                <label for="customerEmailAdd" class="form-label">Recipient Email Address</label>
+                <input type="email" class="form-control" id="customerEmailAdd" name="customerEmailAdd" placeholder="example@email.com" required>
+            </div>
+
+            <!--Transfer Amount SGD$: <input type="text" name="transferAmount" value="" required>(Limit to SGD$500)<br><br><input type="range" class="form-range" id="transferAmount" min="0" max="500" step="0.5" required>-->
+            <label for="transferAmount" class="form-label">{{priceType}} Buy GBP Amount </label>
+            <div class="input-group mb-3" style="width: 50%;">
+                <input id="transferAmount" name="transferAmount" value="" type="number" onkeyup="calculate(this.value);">
+            </div>
+
+            <!--Transaction Rate-->
+            <label for="rate" class="form-label">{{priceType}} Rate: </label>
+            <div class="input-group mb-3" style="width: 50%;">
+                <input id="rate" name="rate" value="{{price}}" type="number" readonly>
+            </div>
+
+            <!--Total Amt-->
+
+            <div class="input-group mb-3" style="width: 50%;">
+                <span class="input-group-text">Total Amount (Limit to SGD$500)</span>
+                <input id="total" name="total" value="" type="number" readonly>
+            </div>
+            <h5 id="demo" style="color: red;"></h5>
+            <!--Transaction Reference (Any random values): <input type="text" name="transactionID" value="" required><br><br>-->
+
+            <div class="mb-3" style="width: 50%;">
+                <label for="transactionID" class="form-label">Transaction Reference (Any random values): </label>
+                <input type="text" class="form-control" id="transactionID" placeholder="" name="transactionID" value="{{ refNo }}" readonly>
+            </div>
+
+
+            <!--Remarks: <input type="text" name="transferRemarks" value=""><br><br>-->
+
+            <div class="mb-3" style="width: 50%;">
+                <label for="transferRemarks" class="form-label">Transaction Remarks: </label>
+                <input type="text" class="form-control" id="transferRemarks" placeholder="Optional" value="Buying {{priceType}}" name="transferRemarks" value="">
+            </div>
+
+            <div class="mb-3" style="width: 50%;">
+                <label for="checking" class="form-label">Would You Like A Receipt To Be Sent To Your Email?</label>
+
+
+                <input class="form-control" placeholder="Key In Gmail Account Only" id="email" value="@gmail.com" name="email">
+
+            </div>
+
+
+            <input type="submit" value="Submit" onclick="validate()">
+        </form> <br>
+        <a href="home" style="margin-left: 100px;">Main Menu</a><br>
+    </body>
+
+    <footer id="footer" class="bd-footer py-5 mt-5">
+        <div class="container py-5">
+            <div class="row">
+                <div class="col-lg-3 mb-3">
+                    <div class="d-inline-flex align-items-center mb-2">
+                        <div>FIDOR</div>
+                    </div>
+                    <ul class="list-unstyled small text-muted">
+                        <li class="mb-2">Designed and built with love by Group 1 of Open Banking App Development (OBKD) :)</li>
+                        <li class="mb-2"><i class="fa fa-copyright"></i>&nbsp;Version 1.1</li>
+                    </ul>
+                </div>
+                <div class="col-6 col-lg-2 offset-lg-1 mb-3">
+                    <h5 style="color: #09143c;">Team Members</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2" style="color: #006eff">Gabriel Kay</li>
+                        <li class="mb-2" style="color: #006eff">Jareth Poh</li>
+                        <li class="mb-2" style="color: #006eff">Jocasta Tan</li>
+                        <li class="mb-2" style="color: #006eff">Lee Qi Zheng</li>
+                        <li class="mb-2" style="color: #006eff">Seann Khoo</li>
+                    </ul>
+                </div>
+                <div class="col-6 col-lg-2 mb-3">
+                    <h5 style="color: #09143c;">Services</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2" style="color: #006eff">Equity (U.S)</li>
+                        <li class="mb-2" style="color: #006eff">Equity (Shanghai)</li>
+                        <li class="mb-2" style="color: #006eff">Foreign Exchange</li>
+                        <li class="mb-2" style="color: #006eff">Cryptocurrency</li>
+                        <li class="mb-2" style="color: #006eff">Precious Metal</li>
+                    </ul>
+                </div>
+                <div class="col-6 col-lg-2 mb-3">
+                    <h5 style="color: #09143c">Supported By</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="http://www.fidor.com/" style="text-decoration: none; color: #006eff;">Fidor</a></li>
+                        <li class="mb-2"><a href="https://www.alphavantage.co/" style="text-decoration: none; color: #006eff">AlphaVantage</a></li>
+                        <li class="mb-2"><a href="https://data.nasdaq.com/" style="text-decoration: none; color: #006eff">Nasdaq Data Link</a></li>
+                    </ul>
+                </div>
+                <div class="col-6 col-lg-2 mb-3">
+                    <h5 style="color: #09143c;">Partners</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="https://www.tp.edu.sg/" style="text-decoration: none; color: #006eff;">Temasek Polytechnic</a></li>
+                        <li class="mb-2"><a href="https://www.tp.edu.sg/schools-and-courses/students/schools/iit.html" style="text-decoration: none; color: #006eff;">School of IIT</a></li>
+                        <li class="mb-2"><a href="mailto:yeewee@tp.edu.sg" style="text-decoration: none; color: #006eff;">Mr Alfred Teng Yee Wee (Lecturer)</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+
+
+
+
+    </html>

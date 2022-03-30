@@ -1,0 +1,17 @@
+ {% include 'navbar.html' %}
+<div style="margin-top: 50px; margin-left: 50px; width: 1100px;">
+    <h1>Stocks</h1>
+    <div><a style="color: grey; " href="stock">
+        View Popular Stocks</a>
+        <div>
+            <ul class="list-group">
+                {% for stock in stocks %}
+                <li class="list-group-item"><a href="rsi/{{stock.symbol}}">{{stock.name}}</a> ({{stock.symbol}})
+                    <a></a>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</div>
+{% include 'footer.html' %}

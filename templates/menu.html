@@ -1,0 +1,301 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<style>
+    .nav-link {
+        color: wheat;
+    }
+    
+    .navbar-nav .nav-item.active .nav-link,
+    .navbar-nav .nav-item:hover .nav-link {
+        color: white;
+    }
+    
+    .dropdown-menu {
+        background-color: #09143c;
+    }
+    
+    .dropdown-item {
+        color: white;
+    }
+    
+    .dropdown-item:hover {
+        background-color: grey;
+        color: wheat;
+    }
+    
+    body {
+        font-family: 'Product Sans';
+    }
+    
+    #profile {
+        border: 1.5px solid wheat;
+        border-radius: 3px;
+        margin-top: -2.5px;
+    }
+    
+    #profileCard {
+        margin-left: auto;
+        margin-right: auto;
+        width: 50rem;
+        margin-top: 50px;
+        border: 1px solid white;
+        text-align: center;
+    }
+    
+    #profileName {
+        color: #09143c;
+    }
+    
+    #profileCardDetails {
+        font-size: 20px;
+        margin-top: 20px;
+    }
+    
+    #backToIndexBtn {
+        border-radius: 5px;
+        border: none;
+        color: white;
+        background-color: #09143c;
+        padding: 10px 27px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 20px;
+        margin: 4px 2px;
+    }
+    
+    #footer {
+        background-color: lightgray;
+    }
+    
+    a:hover {
+        color: inherit;
+    }
+</style>
+
+<head>
+    <nav class="navbar navbar-expand-sm fixed-top" style="background-color:#09143c;">
+        <a class="navbar-brand" href="/">
+            <img src="https://www.fidor.de/images/original/86f13a81fe623515767a5a65c5c766e5b34219da3502.png" style="width:5em; ">
+        </a>
+
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="/home">Home</a>
+            </li>
+            <li><a class="nav-link" href="dashboard">Stocks Owned</a></li>
+            <li><a class="nav-link" href="actives">Insights</a></li>
+            <li><a class="nav-link" href="stocks">Stocks</a></li>
+            <li><a class="nav-link" href="news">News</a></li>
+            <li><a class="nav-link" href="transactions">History</a></li>
+            {% if session.logged_in %}
+
+            <li class="nav-item"><a class="nav-link" href="/logout">Logout</a></li>
+
+            {% else %}
+            <li class="nav-item"><a class="nav-link" href="/register">Register</a></li>
+            <li class="nav-item"><a class="nav-link" href="/login">Login</a></li>
+            {% endif %}
+
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+            Banking Services
+            </a>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="#">Quick Transfer</a>
+                    <a class="dropdown-item">U.S. Equities Trading</a>
+                    <a class="dropdown-item">Shanghai Equities Trading</a>
+                    <a class="dropdown-item">Foreign Exchange Trading</a>
+                    <a class="dropdown-item">Cryptocurrency Trading</a>
+                    <a class="dropdown-item" href="#">Precious Metals Trading</a>
+                </div>
+            </li>
+
+            <div id="profile">
+                <li class="nav-item">
+                    <a class="nav-link" href="profile">
+                        <i class="fa fa-user"></i>&nbsp;{{ fFirstName }} {{ fLastName }}
+                    </a>
+                </li>
+            </div>
+
+        </ul>
+    </nav>
+</head>
+{% if fFirstName %}
+
+<body>
+    <div id="profileCard" class="card">
+        <div class="card-body">
+            <h2 id="profileName" class="card-title">Welcome Back, {{ fFirstName }} {{ fLastName }}.</h2>
+            <div class="row" id="profileCardDetails">
+                <div class="col-sm">
+                    <div>
+                        Customer ID
+                    </div>
+                    <div style="font-weight: bold">
+                        {{ fID }}
+                    </div>
+                </div>
+                <div class="col-sm">
+                    <div>
+                        Account Number
+                    </div>
+                    <div style="font-weight: bold">
+                        {{ fAccountNo }}
+                    </div>
+                </div>
+                <div class="col-sm">
+                    <div>
+                        Account Balance
+                    </div>
+                    <div style="font-weight: bold">
+                        {{ fBalance }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+    <h3 style="color: #09143c; text-align: center;">Account Services</h3>
+    <div class="row" style="justify-content:center; margin-top: 20px;">
+        <a href="profile">
+
+            <div class="card" style="width: 18rem; border-radius: 10px; border: 1px solid #09143c;  text-align: center;">
+                <div style="text-align: center; margin-top: 10px;"><i class="fa fa-10x fa-user" style="color: #09143c;"></i></div>
+                <div class="card-body">
+                    <h5 class="card-title">Customer Profile</h5>
+                    <p class="card-text">View customer profile</p>
+                </div>
+            </div>
+        </a>
+        <a href="transactions">
+            <div class="card" style="width: 18rem; margin-left: 30px; border-radius: 10px; border: 1px solid #09143c; text-align: center;">
+                <div style="text-align: center; margin-top: 10px;"><i class="fa fa-10x fa-receipt" style="color: #09143c;"></i></div>
+                <div class="card-body">
+                    <h5 class="card-title">Transaction History</h5>
+                    <p class="card-text">View Transactions Made</p>
+                </div>
+            </div>
+        </a>
+    </div>
+    <h3 style="color: #09143c; text-align: center; margin-top: 20px;">Banking Services</h3>
+    <div class="row" style="justify-content: center; margin-top: 20px">
+        <div class="card" style="width: 18rem; margin-right: 30px; border-radius: 10px; border: 1px solid #09143c; text-align: center;">
+            <div style="text-align: center; margin-top: 10px;"><i class="fa-solid fa-10x fa-arrow-right-arrow-left" style="color: #09143c;"></i></div>
+            <div class="card-body">
+                <h5 class="card-title">Quick Transfer</h5>
+                <p class="card-text">Quick Transfer</p>
+            </div>
+        </div>
+        <a href="stocks" style="text-decoration: none; color: #09143c;">
+
+            <div class="card" style="width: 18rem; border-radius: 10px; border: 1px solid #09143c; text-align: center;">
+                <div style="text-align: center; margin-top: 10px;"><i class="fa fa-10x fa-flag-usa" style="color: #09143c;"></i></div>
+                <div class="card-body">
+                    <h5 class="card-title">U.S. Equities Trading</h5>
+                    <p class="card-text">View U.S Stocks Only</p>
+                </div>
+            </div>
+        </a>
+        <div class="card" style="width: 18rem; margin-left: 30px; border-radius: 10px; border: 1px solid #09143c; text-align: center;">
+            <div style="text-align: center; margin-top: 10px;"><i class="fa fa-10x fa-yen-sign" style="color: #09143c;"></i></div>
+            <div class="card-body">
+                <h5 class="card-title">Shanghai Equities Trading</h5>
+                <p class="card-text">View Shanghai stocks Only</p>
+            </div>
+        </div>
+    </div>
+    <div class="row" style="justify-content: center; margin-top: 20px">
+        <div class="card" style="width: 18rem; margin-right: 30px; border-radius: 10px; border: 1px solid #09143c; text-align: center;">
+            <div style="text-align: center; margin-top: 10px;"><i class="fa fa-10x fa-euro-sign" style="color: #09143c;"></i></div>
+            <div class="card-body">
+                <h5 class="card-title">Foreign Exchange Trading</h5>
+                <p class="card-text">View Foreign Currencies (EUR/SGD, GBP/SGD and USD/SGD)</p>
+            </div>
+        </div>
+        <div class="card" style="width: 18rem; border-radius: 10px; border: 1px solid #09143c; text-align: center;">
+            <div style="text-align: center; margin-top: 10px;"><i class="fa-brands fa-10x fa-bitcoin" style="color: #09143c;"></i></div>
+            <div class="card-body">
+                <h5 class="card-title">Cryptocurrency Trading</h5>
+                <p class="card-text">View Cryptocurrency (BTC, XRP and ETH)</p>
+            </div>
+        </div>
+        <div class="card" style="width: 18rem; margin-left: 30px; border-radius: 10px; border: 1px solid #09143c; text-align: center;">
+            <div style="text-align: center; margin-top: 10px;"><i class="fa fa-10x fa-coins" style="color: #09143c;"></i></div>
+            <div class="card-body">
+                <h5 class="card-title">Precious Metals Trading</h5>
+                <p class="card-text">View Precious Metals (Platinum, Gold and Silver)</p>
+            </div>
+        </div>
+
+    </div>
+</body>
+<footer id="footer" class="bd-footer py-5 mt-5">
+    <div class="container py-5">
+        <div class="row">
+            <div class="col-lg-3 mb-3">
+                <div class="d-inline-flex align-items-center mb-2">
+                    <div>FIDOR</div>
+                </div>
+                <ul class="list-unstyled small text-muted">
+                    <li class="mb-2">Designed and built with love by Group 1 of Open Banking App Development (OBKD) :)</li>
+                    <li class="mb-2"><i class="fa fa-copyright"></i>&nbsp;Version 1.1</li>
+                </ul>
+            </div>
+            <div class="col-6 col-lg-2 offset-lg-1 mb-3">
+                <h5 style="color: #09143c;">Team Members</h5>
+                <ul class="list-unstyled">
+                    <li class="mb-2" style="color: #006eff">Gabriel Kay</li>
+                    <li class="mb-2" style="color: #006eff">Jareth Poh</li>
+                    <li class="mb-2" style="color: #006eff">Jocasta Tan</li>
+                    <li class="mb-2" style="color: #006eff">Lee Qi Zheng</li>
+                    <li class="mb-2" style="color: #006eff">Seann Khoo</li>
+                </ul>
+            </div>
+            <div class="col-6 col-lg-2 mb-3">
+                <h5 style="color: #09143c;">Services</h5>
+                <ul class="list-unstyled">
+                    <li class="mb-2" style="color: #006eff">Equity (U.S)</li>
+                    <li class="mb-2" style="color: #006eff">Equity (Shanghai)</li>
+                    <li class="mb-2" style="color: #006eff">Foreign Exchange</li>
+                    <li class="mb-2" style="color: #006eff">Cryptocurrency</li>
+                    <li class="mb-2" style="color: #006eff">Precious Metal</li>
+                </ul>
+            </div>
+            <div class="col-6 col-lg-2 mb-3">
+                <h5 style="color: #09143c">Supported By</h5>
+                <ul class="list-unstyled">
+                    <li class="mb-2"><a href="http://www.fidor.com/">Fidor</a></li>
+                    <li class="mb-2"><a href="https://polygon.io/">Polygon.io</a></li>
+                    <li class="mb-2"><a href="https://site.financialmodelingprep.com/">Financial Modeling Prep</a></li>
+                    <li class="mb-2"><a href="https://finage.co.uk/">Finage</a></li>
+                    <li class="mb-2"><a href="https://finnhub.io/">Finnhub</a></li>
+                </ul>
+            </div>
+            <div class="col-6 col-lg-2 mb-3">
+                <h5 style="color: #09143c;">Partners</h5>
+                <ul class="list-unstyled">
+                    <li class="mb-2"><a href="https://www.tp.edu.sg/" style="text-decoration: none; color: #006eff;">Temasek Polytechnic</a></li>
+                    <li class="mb-2"><a href="https://www.tp.edu.sg/schools-and-courses/students/schools/iit.html" style="text-decoration: none; color: #006eff;">School of IIT</a></li>
+                    <li class="mb-2"><a href="mailto:yeewee@tp.edu.sg" style="text-decoration: none; color: #006eff;">Mr Alfred Teng Yee Wee (Lecturer)</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
+{% else %}
+
+<body>
+    <h1 style="text-align: center; color: #09143c;">Sorry, We Couldn't Find Your Details :(</h1>
+    <div style="text-align: center;">
+        <button id="backToIndexBtn" href="index">Back to Home</button>
+    </div>
+</body>
+{% endif %}
+
+</html>

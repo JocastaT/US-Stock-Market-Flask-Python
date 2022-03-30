@@ -1,0 +1,372 @@
+<html>
+<style>
+    * {
+        box-sizing: border-box;
+        padding: 0;
+        margin: 0;
+    }
+    
+     :root {
+        --heading: 'Montserrat', sans-serif;
+    }
+    
+    body {
+        font-family: 'Raleway', sans-serif;
+        background: #fff;
+    }
+    /* global styling */
+    
+    ul {
+        list-style: none;
+    }
+    
+    a {
+        text-decoration: none;
+        color: #000;
+    }
+    /* header */
+    
+    .top-head {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin: 0 auto;
+        margin-top: 10px;
+        background: #09143C;
+        color: #fff;
+        padding: 20px 30px;
+    }
+    
+    .top-head .fas {
+        font-size: 2rem;
+        cursor: pointer;
+    }
+    /******* js related styling *****/
+    
+    .times-btn {
+        display: none;
+    }
+    
+    .nav-bar {
+        background: #333;
+        height: 0;
+        overflow: hidden;
+    }
+    
+    .show-nav {
+        height: auto;
+    }
+    /********************/
+    
+    .nav-bar ul li {
+        text-align: center;
+        display: block;
+        margin-top: 15px;
+        padding: 15px 0;
+        transition: all 1s ease-in-out;
+    }
+    
+    .nav-bar ul li:hover {
+        background: #0e0e0e;
+    }
+    
+    input[type=text] {
+        background-color: white;
+        background-position: 10px 10px;
+        background-repeat: no-repeat;
+        padding-left: 40px;
+    }
+    
+    .nav-bar ul li a {
+        color: #fff;
+        text-transform: uppercase;
+    }
+    
+    .nav-bar ul li a:hover {
+        text-decoration: underline;
+    }
+    /** main ***/
+    
+    input[type=text],
+    select {
+        width: 520px;
+        padding: 12px 20px;
+        margin-left: -30px;
+        display: inline-block;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        height: 40px;
+    }
+    
+    main a {
+        padding: 15px 0;
+        display: block;
+        transition: all 0.5s;
+    }
+    
+    main span {
+        transition: padding-left 0.5s;
+    }
+    
+    main a:hover span {
+        padding-left: 5px;
+    }
+    
+    main a:hover {
+        color: #7ac64d;
+    }
+    
+    @media(min-width: 800px) {
+        /* nav */
+        .ham-btn,
+        .times-btn {
+            display: none!important;
+        }
+        .navigation-container {
+            display: flex;
+            background: #09143C;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .top-head {
+            flex: 0 0 15%;
+        }
+        .nav-bar {
+            flex: 1 0 auto;
+            height: 100%;
+            background: transparent;
+        }
+        .nav-bar nav ul {
+            display: flex;
+            justify-content: center;
+        }
+        .nav-bar nav ul li {
+            padding-right: 30px;
+        }
+        .nav-bar nav ul li:hover {
+            background: none;
+        }
+        /* social icons */
+        .social-icons {
+            flex: 0 1 30%;
+            display: block;
+            margin: 0 auto;
+        }
+        .footer-container {
+            display: flex;
+        }
+        .footer-right,
+        .footer-left {
+            flex: 1;
+        }
+    }
+    /* styling search bar */
+    
+    .search input[type=text] {
+        width: 200px;
+        height: 25px;
+        margin-top: 25px;
+        margin-left: 20px;
+        border-radius: 25px;
+        border: none;
+    }
+    
+    .search {
+        float: right;
+    }
+    
+    .search button {
+        background-color: #0074D9;
+        color: #f2f2f2;
+        float: right;
+        padding: 5px 10px;
+        margin-right: 20px;
+        font-size: 12px;
+        border: none;
+        cursor: pointer;
+    }
+</style>
+
+
+{% include 'navbar.html' %}
+
+<head>
+    <title>FIDOR Bank Online Customer Portal</title>
+
+
+</head>
+
+<body style="font-family: 'Product Sans'; margin-top: 80px;">
+
+    <h1 style="color: #09143C; text-align: center;">U.S Stocks Trading</h1>
+    <h2 style="color: black; text-align: center;">U.S Stocks Ranked by Market Cap</h2>
+
+    <div style="text-align: center; ">
+        <div style="box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2); border: 1.5px solid black; border-radius: 8px; width: 80%; height: 25%; display: inline-block;">
+            <img src="http://t1.gstatic.com/images?q=tbn:ANd9GcSjoU2lZ2eJX3aCMfiFDt39uRNcDu9W7pTKcyZymE2iKa7IOVaI" style="width:8%; border-radius: 8px; margin-right:820px; margin-top: 25px;">
+            <div style="padding: 2px 16px;">
+                <h3 style="margin-top: -60px; margin-right: 600px; font-size: 20px;"> {{company1}}</h3>
+                <div style="color: #09143C; margin-right: 655px; margin-top: 10px; font-size: 13px;">{{symbol1}} </div>
+                <div style="color: black; margin-right: 0px; margin-top: -50px;">Daily Price Change
+                    <p><span style="color: #ff7a1a; margin-top: 30px;">{{changesAAPL}}</span></p>
+                </div>
+
+
+                <div style="color: #09143C; margin-right: -700px; margin-top: -50px;">Market Cap:<span>  ${{marketcap1}}</span> </div>
+                <div style="color: #09143C; margin-right: -760px; margin-top: 0px;">Volume:<span>  ${{volume1}}</span> </div>
+
+            </div>
+        </div>
+        <div style="text-align: center; margin-top: 40px;">
+            <div style="box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2); border: 1.5px solid black; border-radius: 8px; width: 80%; height: 25%; display: inline-block;">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRnmCeM6dZlvIUPqGLbDfKPd1IAQMKIpNAnPta5Gmm9N7DV7GIdGqchuNXePPYxathC098&usqp=CAU" style="width:8%; border-radius: 8px; margin-right:820px; margin-top: 25px;">
+                <div style="padding: 2px 16px;">
+                    <h3 style="margin-top: -60px; margin-right: 580px; font-size: 20px;">{{company2}}</h3>
+                    <div style="color: #09143C; margin-right: 655px; margin-top: 10px; font-size: 13px;">{{symbol2}} </div>
+                    <div style="color: #09143C; margin-right: 0px; margin-top: -30px;">{{changesGOOG}}</div>
+
+                    <div style="color: #09143C; margin-right: -700px; margin-top: -50px;">Market Cap:<span>  ${{marketcap2}}</span> </div>
+                    <div style="color: #09143C; margin-right: -760px; margin-top: 0px;">Volume:<span>  ${{volume2}}</span> </div>
+                </div>
+            </div>
+            <div style="text-align: center; margin-top: 40px;">
+                <div style="box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2); border: 1.5px solid black; border-radius: 8px; width: 80%; height: 25%; display: inline-block;">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRnmCeM6dZlvIUPqGLbDfKPd1IAQMKIpNAnPta5Gmm9N7DV7GIdGqchuNXePPYxathC098&usqp=CAU" style="width:8%; border-radius: 8px; margin-right:820px; margin-top: 25px;">
+                    <div style="padding: 2px 16px;">
+                        <h3 style="margin-top: -60px; margin-right: 580px; font-size: 20px;">{{company3}}</h3>
+                        <div style="color: #09143C; margin-right: 655px; margin-top: 10px; font-size: 13px;">{{symbol3}} </div>
+                        <div style="color: #09143C; margin-right: 0px; margin-top: -30px;">{{changesGOOGL}}</div>
+
+                        <div style="color: #09143C; margin-right: -700px; margin-top: -50px;">Market Cap:<span>  ${{marketcap3}}</span> </div>
+                        <div style="color: #09143C; margin-right: -760px; margin-top: 0px;">Volume:<span>  ${{volume3}}</span> </div>
+                    </div>
+                </div>
+            </div>
+            <div style="text-align: center; margin-top: 40px;">
+                <div style="box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2); border: 1.5px solid black; border-radius: 8px; width: 80%; height: 25%; display: inline-block;">
+                    <img src="https://cdn.freelogovectors.net/wp-content/uploads/2021/10/amazon_logo-freelogovectors.net_.png" style="width:8%; border-radius: 8px; margin-right:820px; margin-top: 25px;">
+                    <div style="padding: 2px 16px;">
+                        <h3 style="margin-top: -60px; margin-right: 540px; font-size: 20px;">{{company4}}</h3>
+                        <div style="color: #09143C; margin-right: 655px; margin-top: 10px; font-size: 13px;">{{symbol4}} </div>
+                        <div style="color: #09143C; margin-right: 0px; margin-top: -30px;">{{changesAMZN}}</div>
+
+                        <div style="color: #09143C; margin-right: -700px; margin-top: -50px;">Market Cap:<span>  ${{marketcap4}}</span> </div>
+                        <div style="color: #09143C; margin-right: -760px; margin-top: 0px;">Volume:<span>  ${{volume4}}</span> </div>
+                    </div>
+                </div>
+            </div>
+            <div style="text-align: center; margin-top: 40px;">
+                <div style="box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2); border: 1.5px solid black; border-radius: 8px; width: 80%; height: 25%; display: inline-block;">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/e/e8/Tesla_logo.png" style="width:8%; border-radius: 8px; margin-right:820px; margin-top: 25px;">
+                    <div style="padding: 2px 16px;">
+                        <h3 style="margin-top: -70px; margin-right: 610px; font-size: 20px;">{{company5}}</h3>
+                        <div style="color: #09143C; margin-right: 655px; margin-top: 10px; font-size: 13px;">{{symbol5}} </div>
+                        <div style="color: #09143C; margin-right: 0px; margin-top: -30px;">{{changesTSLA}}</div>
+
+                        <div style="color: #09143C; margin-right: -700px; margin-top: -70px;">Market Cap:<span>  ${{marketcap5}}</span> </div>
+                        <div style="color: #09143C; margin-right: -760px; margin-top: 0px;">Volume:<span>  ${{volume5}}</span> </div>
+                    </div>
+                </div>
+                <div style="text-align: center;margin-top: 40px;">
+                    <div style="box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2); border: 1.5px solid black; border-radius: 8px; width: 80%; height: 25%; display: inline-block;">
+                        <img src="https://logos-world.net/wp-content/uploads/2020/11/Nvidia-Emblem.png" style="width:10%; border-radius: 8px; margin-right:820px; margin-top: 25px;">
+                        <div style="padding: 2px 16px;">
+                            <h3 style="margin-top: -50px; margin-right: 510px; font-size: 20px;">{{company6}}</h3>
+                            <div style="color: #09143C; margin-right: 655px; margin-top: 10px; font-size: 13px;">{{symbol6}} </div>
+                            <div style="color: #09143C; margin-right: 0px; margin-top: -30px;">{{changesNVDA}}</div>
+
+                            <div style="color: #09143C; margin-right: -700px; margin-top: -50px;">Market Cap:<span>  ${{marketcap6}}</span> </div>
+                            <div style="color: #09143C; margin-right: -760px; margin-top: 0px;">Volume:<span>  ${{volume6}}</span> </div>
+                        </div>
+                    </div>
+                </div>
+                <div style="text-align: center; margin-top: 40px;">
+                    <div style="box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2); border: 1.5px solid black; border-radius: 8px; width: 80%; height: 25%; display: inline-block;">
+                        <img src="https://cdn.freelogovectors.net/wp-content/uploads/2021/10/facebook-meta-logo-freelogovectors.net_.png" style="width:8%; border-radius: 8px; margin-right:820px; margin-top: 25px;">
+                        <div style="padding: 2px 16px;">
+                            <h3 style="margin-top: -60px; margin-right: 500px; font-size: 20px;">{{company7}}</h3>
+                            <div style="color: #09143C; margin-right: 655px; margin-top: 10px; font-size: 13px;">{{symbol7}} </div>
+                            <div style="color: #09143C; margin-right: 0px; margin-top: -30px;">{{changesFB}}</div>
+
+                            <div style="color: #09143C; margin-right: -700px; margin-top: -50px;">Market Cap:<span>  ${{marketcap7}}</span> </div>
+                            <div style="color: #09143C; margin-right: -760px; margin-top: 0px;">Volume:<span>  ${{volume7}}</span> </div>
+                        </div>
+                    </div>
+                </div>
+                <div style="text-align: center; margin-top: 40px;">
+                    <div style="box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2); border: 1.5px solid black; border-radius: 8px; width: 80%; height: 25%; display: inline-block;">
+                        <img src="https://g.foolcdn.com/art/companylogos/square/vti.png" style="width:10%; border-radius: 8px; margin-right:820px; margin-top: 10px;">
+                        <div style="padding: 2px 16px;">
+                            <h3 style="margin-top: -80px; margin-right: 210px; font-size: 20px;">{{company8}}</h3>
+                            <div style="color: #09143C; margin-right: 655px; margin-top: 10px; font-size: 13px;">{{symbol8}} </div>
+                            <div style="color: #09143C; margin-right: 0px; margin-top: -30px;">{{changesVTI}}</div>
+
+                            <div style="color: #09143C; margin-right: -700px; margin-top: -50px;">Market Cap:<span>  ${{marketcap8}}</span> </div>
+                            <div style="color: #09143C; margin-right: -760px; margin-top: 0px;">Volume:<span>  ${{volume8}}</span> </div>
+                        </div>
+                    </div>
+                    <div style="text-align: center;margin-top: 40px;">
+                        <div style="box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2); border: 1.5px solid black; border-radius: 8px; width: 80%; height: 25%; display: inline-block;">
+                            <img src="https://prosperopedia.com/wp-content/uploads/2019/01/chase-bank-logo-symbol.jpg" style="width:9%; border-radius: 8px; margin-right:820px; margin-top: 10px;">
+                            <div style="padding: 2px 16px;">
+                                <h3 style="margin-top: -50px; margin-right: 478px; font-size: 20px;">{{company9}}</h3>
+                                <div style="color: #09143C; margin-right: 655px; margin-top: 10px; font-size: 13px;">{{symbol9}} </div>
+                                <div style="color: #09143C; margin-right: 0px; margin-top: -30px;">{{changesJPM}}</div>
+
+                                <div style="color: #09143C; margin-right: -700px; margin-top: -50px;">Market Cap:<span>  ${{marketcap9}}</span> </div>
+                                <div style="color: #09143C; margin-right: -760px; margin-top: 0px;">Volume:<span>  ${{volume9}}</span> </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="text-align: center;margin-top: 40px;">
+
+                        <div style="box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2); border: 1.5px solid black; border-radius: 8px; width: 80%; height: 25%; display: inline-block;">
+                            <img src="https://g.foolcdn.com/art/companylogos/square/spy.png" style="width:9%; border-radius: 8px; margin-right:820px; margin-top: 10px;">
+                            <div style="padding: 2px 16px;">
+                                <h3 style="margin-top: -50px; margin-right: 478px; font-size: 20px;">{{company10}}</h3>
+                                <div style="color: #09143C; margin-right: 655px; margin-top: 10px; font-size: 13px;">{{symbol10}} </div>
+                                <div style="color: #09143C; margin-right: 0px; margin-top: -30px;">{{changesSPY}}</div>
+
+                                <div style="color: #09143C; margin-right: -700px; margin-top: -50px;">Market Cap:<span>  ${{marketcap10}}</span> </div>
+                                <div style="color: #09143C; margin-right: -760px; margin-top: 0px;">Volume:<span>  ${{volume10}}</span> </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                </div>
+
+                <!--<div style="box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2); border: 1.5px solid black; border-radius: 8px; width: 20%; height: 80%; display: inline-block;">
+            <img src="data:image/png;base64,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" style="width:100%; border-radius: 8px;">
+            <div style="padding: 2px 16px;">
+                <h3 style="text-align: center">Gold</h3>
+                <h2 style="color: #09143C; text-align: center;">${{ goldPrice }} per ounce</h2>
+                <div style="text-align: center;">
+                    <button style="border-radius: 5px; border: 1px solid #09143C; color: white; background-color: #09143C; width: 100px; height: 30px;" href="">Buy Metal</button>
+                </div>
+            </div>
+        </div>
+        <div style="box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2); border: 1.5px solid black; border-radius: 8px; width: 20%; height: 80%; display: inline-block; margin-left: 20px;">
+            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAMAAAAJbSJIAAAAclBMVEX///8AAACUlJTc3NzPz8/w8PAYGBj7+/vW1tbm5ubBwcH4+PjLy8sODg5XV1eXl5cjIyONjY0tLS1jY2Ofn58eHh6tra2FhYVCQkJ0dHSmpqa7u7tLS0t+fn49PT2wsLBcXFwTExNqamo0NDQqKirq6uoHy/WqAAAEdUlEQVR4nO2da3viIBBGs7HRxHivl7pa22r7///irk/3EsOgEFCG4T1fUxJOkxgYBsgyAAAAAAAAAAAAAAAAAAAAAAAAAAB+FNVovcw5sFyPqsK3XplP+j840Z/kpT+9Ip+FFiKZ5X7uZLUNbXKFbeXsN5iHlrjBvHYTfFqENrjJ4slFMA9dfSOm3QU5v4FNtl0Fn0PX3Jhn6YIdFWN5RL/p8KD+DF1nS9a2gr3QNbamZ2n4ErrC1uztBGN7Rs9YPaeD0LXtxMDCcBq6sp1YWtzCcejKdmJsfhN3oevakZ2x4Tt9gtN8V/bCU+42J7qC76aCX2Tx8dD4P3R/dvR7ZNrnH1KFJza/VPdnMKEqaXoTNkRZy+/pA9gTtdwYlqX+Pd6jd84U1INmVpT6Vlh8ah7GUq2m4feijuIW0jfRLCxVdb77D4Z4m76MCpZqwdc717Ubr2pFzeLgT2rB/M517QYRCTSLLBKGDvG6O0L0D2D4DQzZAEMtMGQDDLUwMqzrQk9NDN5GZNjbzZ9fTrNVX8+K6ANFYli8dR72isGwHmriYEIM66Vb4gB7Q6LbLspwtHIV5G1Y+xh05mxYesksY2y49uHH2dBXbhlbQyKmJMvQmyBXQ2qcRJShz6wIlobE5WQZFu4NGeaG2o7SfjrsXR9KIlqxDA01SRGHnwZjLHFEMUi/D7PR6igMybbM3LBwDIbUIOfKODM9BkPiFn6aDzdHYFh/KFdaWEyfiMBQbc3MbBIGIjBU03StZmvxN1RTIuySWvgbKm2Sk115/oaH9mVG6t9ca7exN1Qyk9q5c8X6uD9MXoc6S/aGo/ZVWgmw/wQWmkYce8P2t6J/8Smsmz+0dM4he8Nj6yKXc5cuvySkInvDdoLoW/Nguz1H/AjxN2wnaze/9koi9oE4AXfDoj39vXlQTVkj6s7dUGnRNA+qiZVEpzE2w3HjWK2Gp47qGWIznDWOEWnKxCzR2Awv7qE61CbgHt54D4kkXu6GV39L1cpH+Fsq/3uYQJvGpl1KhlDZG17vWwwE9C1u9g//ZuZF2z+83cd/O+5ffvfxdSdgbyg/TpNArE2Nl9pdh7+h/Jg3keolbdxC/tiT/PHDBMaA5Y/jJ5CLkUA+jfycKCpw6ABHQ/m5iQnklyaQI5xAnncCufoJzLdIYM5MlpWf0g3lz13L5M8/PCN9DmmWwDzg7DyX22WF5hgMM/Hz8f8ge02F/0heF8OESKIYDsBQCwzZAEMtMGSDT0Nha1/KX79U/hq08tcRlr8WtPz1vBNYk13+uvqavRHMd4+4P457I+j2t1hsuOxvoQnIvZv/h+gTsMf8KZO/z0ykewXZ9A/k7/ckf8+uBPZdS2DvvOieU+v9DxPYwzKBfUhjUuwoGM+D2nk/YA/j6g/BKQBRanapY8TCahaKyoB7EzV375lX/jIH/bOtnP3OFLmXlai9M8s9xsfKfOI1H9uZ1SR3fP9Uimq0Xk7z8EyX61HFL7oJAAAAAAAAAAAAAAAAAAAAAAAAAJBlvwCjgGPxOQyNSgAAAABJRU5ErkJggg==" style="width:100%; border-radius: 8px;">
+            <div style="padding: 2px 16px;">
+                <h3 style="text-align: center">Silver</h3>
+                <h2 style="color: #09143C; text-align: center;">${{ silverPrice }} per ounce</h2>
+                <div style="text-align: center;">
+                    <button style="border-radius: 5px; border: 1px solid #09143C; color: white; background-color: #09143C; width: 100px; height: 30px;" href="">Buy Metal</button>
+                </div>
+            </div>
+        </div>
+        <div style="box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2); border: 1.5px solid black; border-radius: 8px; width: 20%; height: 80%; display: inline-block; margin-left: 20px;">
+            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAMAAAAJbSJIAAAAclBMVEX///8AAACUlJTc3NzPz8/w8PAYGBj7+/vW1tbm5ubBwcH4+PjLy8sODg5XV1eXl5cjIyONjY0tLS1jY2Ofn58eHh6tra2FhYVCQkJ0dHSmpqa7u7tLS0t+fn49PT2wsLBcXFwTExNqamo0NDQqKirq6uoHy/WqAAAEdUlEQVR4nO2da3viIBBGs7HRxHivl7pa22r7///irk/3EsOgEFCG4T1fUxJOkxgYBsgyAAAAAAAAAAAAAAAAAAAAAAAAAAB+FNVovcw5sFyPqsK3XplP+j840Z/kpT+9Ip+FFiKZ5X7uZLUNbXKFbeXsN5iHlrjBvHYTfFqENrjJ4slFMA9dfSOm3QU5v4FNtl0Fn0PX3Jhn6YIdFWN5RL/p8KD+DF1nS9a2gr3QNbamZ2n4ErrC1uztBGN7Rs9YPaeD0LXtxMDCcBq6sp1YWtzCcejKdmJsfhN3oevakZ2x4Tt9gtN8V/bCU+42J7qC76aCX2Tx8dD4P3R/dvR7ZNrnH1KFJza/VPdnMKEqaXoTNkRZy+/pA9gTtdwYlqX+Pd6jd84U1INmVpT6Vlh8ah7GUq2m4feijuIW0jfRLCxVdb77D4Z4m76MCpZqwdc717Ubr2pFzeLgT2rB/M517QYRCTSLLBKGDvG6O0L0D2D4DQzZAEMtMGQDDLUwMqzrQk9NDN5GZNjbzZ9fTrNVX8+K6ANFYli8dR72isGwHmriYEIM66Vb4gB7Q6LbLspwtHIV5G1Y+xh05mxYesksY2y49uHH2dBXbhlbQyKmJMvQmyBXQ2qcRJShz6wIlobE5WQZFu4NGeaG2o7SfjrsXR9KIlqxDA01SRGHnwZjLHFEMUi/D7PR6igMybbM3LBwDIbUIOfKODM9BkPiFn6aDzdHYFh/KFdaWEyfiMBQbc3MbBIGIjBU03StZmvxN1RTIuySWvgbKm2Sk115/oaH9mVG6t9ca7exN1Qyk9q5c8X6uD9MXoc6S/aGo/ZVWgmw/wQWmkYce8P2t6J/8Smsmz+0dM4he8Nj6yKXc5cuvySkInvDdoLoW/Nguz1H/AjxN2wnaze/9koi9oE4AXfDoj39vXlQTVkj6s7dUGnRNA+qiZVEpzE2w3HjWK2Gp47qGWIznDWOEWnKxCzR2Awv7qE61CbgHt54D4kkXu6GV39L1cpH+Fsq/3uYQJvGpl1KhlDZG17vWwwE9C1u9g//ZuZF2z+83cd/O+5ffvfxdSdgbyg/TpNArE2Nl9pdh7+h/Jg3keolbdxC/tiT/PHDBMaA5Y/jJ5CLkUA+jfycKCpw6ABHQ/m5iQnklyaQI5xAnncCufoJzLdIYM5MlpWf0g3lz13L5M8/PCN9DmmWwDzg7DyX22WF5hgMM/Hz8f8ge02F/0heF8OESKIYDsBQCwzZAEMtMGSDT0Nha1/KX79U/hq08tcRlr8WtPz1vBNYk13+uvqavRHMd4+4P457I+j2t1hsuOxvoQnIvZv/h+gTsMf8KZO/z0ykewXZ9A/k7/ckf8+uBPZdS2DvvOieU+v9DxPYwzKBfUhjUuwoGM+D2nk/YA/j6g/BKQBRanapY8TCahaKyoB7EzV375lX/jIH/bOtnP3OFLmXlai9M8s9xsfKfOI1H9uZ1SR3fP9Uimq0Xk7z8EyX61HFL7oJAAAAAAAAAAAAAAAAAAAAAAAAAJBlvwCjgGPxOQyNSgAAAABJRU5ErkJggg==" style="width:100%; border-radius: 8px;">
+            <div style="padding: 2px 16px;">
+                <h3 style="text-align: center">Platinum</h3>
+                <h2 style="color: #09143C; text-align: center;">${{ platinumPrice }} per ounce</h2>
+                <div style="text-align: center;">
+                    <button style="border-radius: 5px; border: 1px solid #09143C; color: white; background-color: #09143C; width: 100px; height: 30px;" href="">Buy Metal</button>
+                </div>
+            </div>
+        </div>-->
+                {% include 'footer.html' %}
+
+</html>

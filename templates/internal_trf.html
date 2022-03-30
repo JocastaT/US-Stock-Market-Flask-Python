@@ -1,0 +1,112 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+
+
+<script>
+    function check() {
+        if (document.getElementById('inlineRadio1').checked == true) {
+            document.getElementById("email").disabled = false;
+        }
+        if (document.getElementById('inlineRadio2').checked == true) {
+            document.getElementById("email").disabled = true;
+        }
+    }
+</script>
+<script>
+    function multiplyBy() {
+        num1 = document.getElementById("stockNo").value;
+        num2 = document.getElementById("regularMarketPrice").value;
+        document.getElementById("totalAmt").value = num1 * num2 * 1.35;
+    }
+</script>
+
+<style>
+    header {
+        clear: both;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        padding: 20px 10%;
+        background-color: #09143c;
+        color: #edf0f1;
+    }
+    
+    .brand {
+        margin-right: auto;
+    }
+    
+    .mb-3 {
+        margin-left: 70px;
+    }
+</style>
+{% include 'navbar.html' %}
+<div>
+    <h2 style="margin-left: 70px; margin-top: 30px;"> FIDOR Bank Account ({{ fAccountNo }}) - Balance $ {{ fBalance }}</h2>
+    <br>
+    <form action="process" method="post">
+
+        <!--process()-->
+        <div class="mb-3">
+            <label for="fidorID" z="form-label">FIDOR ID</label>
+            <input type="text" style="width: 200px;" class="form-control readonly" id="fidorID" value="{{ fFIDORID }}" readonly>
+        </div>
+        <div class="mb-3">
+            <label for="subject" class="form-label">Subject</label>
+            <input type="text" class="form-control" id="subject" name="subject" style="width: 200px;" value="Buying stocks" readonly>
+        </div>
+        <!--Recipient Email Address: <input type="text" name="customerEmailAdd" value="" required><br><br>-->
+        <div class="mb-3">
+            <label for="symbol" class="form-label">Stock Symbol</label>
+            <input type="text" class="form-control readonly" id="stock" name="stock" style="width: 200px;" value="{{stock.symbol}}" readonly>
+
+        </div>
+
+        <label for="regularMarketPrice" style="margin-left: 70px;" class="form-label">Market Price 
+        </label>
+        <div class="input-group mb-3">
+            <span class="input-group-text">$</span>
+            <input style="width: 200px;" id="regularMarketPrice" name="regularMarketPrice" value="" onkeyup="multiplyBy()" type="number" readonly>
+        </div>
+
+        <label for="stockNo" style="margin-left: 70px; " class="form-label ">No. of stocks</label>
+        <div class="input-group mb-3 ">
+            <input id="stockNo" name="stockNo" onkeyup="multiplyBy()" value="" type="number" min="0 " max="500" required>
+        </div>
+
+        <label for="currency " style="margin-left: 70px; " class="form-label ">Currency</label>
+        <div class="input-group mb-3 ">
+
+            <input id="currency" name="currency" value="SGD " type="text " readonly>
+        </div>
+        <!--Transfer Amount SGD$: <input type="text " name="transferAmount " value=" " required>(Limit to SGD$500)<br><br><input type="range " class="form-range " id="transferAmount " min="0 " max="500 " step="0.5 " required>-->
+
+        <div class="mb-3 ">
+            <label for="totalAmt" class="form-label ">Total Amount (Limit $500)</label>
+            <input class="form-control " style="width: 200px; " id="totalAmt" name="totalAmt" type="number" min="0 " max="500 " readonly>
+        </div>
+        <label for="transactionID " style="margin-left: 70px; " class="form-label ">Transaction ID (Any Random Value)</label>
+        <div class="input-group mb-3 ">
+
+            <input id="transactionID" name="transactionID" value="{{refNo}}" type="text" readonly>
+        </div>
+        <div class="mb-3" style="width: 50%;">
+            <label for="checking" class="form-label">Would You Like A Receipt To Be Sent To Your Email?</label>
+            <input class="form-control" placeholder="Key In Gmail Account Only" id="email" value="@gmail.com" name="email">
+        </div>
+
+        <button class="btn btn-primary " type="submit " value="Submit " style="margin-left: 70px; margin-top: 20px; background-color: #09143c; ">Buy</button>
+    </form> <br>
+    <a style="margin-left: 70px;" href="services ">Main Menu</a><br>
+</div>
+
+<script>
+    var regularMarketPrice = sessionStorage.getItem("regularMarketPrice");
+    console.log(regularMarketPrice);
+
+    document.getElementById("regularMarketPrice").value = sessionStorage.getItem("regularMarketPrice");
+</script>
+
+{% include 'footer.html' %}

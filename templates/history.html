@@ -1,0 +1,92 @@
+{% include 'navbar.html' %}
+
+
+<body>
+    <h2 style="margin-left: 50px; margin-top: 20px;">Transaction History</h2>
+    <br>
+    <br>
+    <br> {% for index in customerDetails %}
+
+    <div class="card" style="width: 80%; margin-left: 50px;">
+        <div class="card-body">
+            <h4 class="card-title">{{index['id']}}</h4><span class="badge bg-info text-dark" font-size="medium;">{{index['state']}}</span>
+
+            <p class="card-text">
+
+                <dl class="row">
+                    <dt class="col-sm-3">Subject</dt>
+                    <dd class="col-sm-9">{{index['subject']}}</dd>
+                    <dt class="col-sm-3">Currency</dt>
+                    <dd class="col-sm-9">{{index['currency']}}</dd>
+                    <dt class="col-sm-3">Amount</dt>
+                    <dd class="col-sm-9">{{ index['amount']/100 }}</dd>
+                    <dt class="col-sm-3">Recipient Name</dt>
+                    <dd class="col-sm-9">{{index['transaction_type_details']['remote_name']}}</dd>
+                </dl>
+
+            </p>
+
+        </div>
+        <div class="card-footer">
+            <small class="text-muted">Created: {{index['created_at']}}</small><br>
+            <small class="text-muted">Last Updated: {{index['updated_at']}}</small>
+        </div>
+    </div>
+    <br>
+    <br> {% endfor %}
+</body>
+
+<footer id="footer" class="bd-footer py-5 mt-5">
+    <div class="container py-5">
+        <div class="row">
+            <div class="col-lg-3 mb-3">
+                <div class="d-inline-flex align-items-center mb-2">
+                    <div>FIDOR</div>
+                </div>
+                <ul class="list-unstyled small text-muted">
+                    <li class="mb-2">Designed and built with love by Group 1 of Open Banking App Development (OBKD) :)</li>
+                    <li class="mb-2"><i class="fa fa-copyright"></i>&nbsp;Version 1.1</li>
+                </ul>
+            </div>
+            <div class="col-6 col-lg-2 offset-lg-1 mb-3">
+                <h5 style="color: #09143c;">Team Members</h5>
+                <ul class="list-unstyled">
+                    <li class="mb-2" style="color: #006eff">Gabriel Kay</li>
+                    <li class="mb-2" style="color: #006eff">Jareth Poh</li>
+                    <li class="mb-2" style="color: #006eff">Jocasta Tan</li>
+                    <li class="mb-2" style="color: #006eff">Lee Qi Zheng</li>
+                    <li class="mb-2" style="color: #006eff">Seann Khoo</li>
+                </ul>
+            </div>
+            <div class="col-6 col-lg-2 mb-3">
+                <h5 style="color: #09143c;">Services</h5>
+                <ul class="list-unstyled">
+                    <li class="mb-2" style="color: #006eff">Equity (U.S)</li>
+                    <li class="mb-2" style="color: #006eff">Equity (Shanghai)</li>
+                    <li class="mb-2" style="color: #006eff">Foreign Exchange</li>
+                    <li class="mb-2" style="color: #006eff">Cryptocurrency</li>
+                    <li class="mb-2" style="color: #006eff">Precious Metal</li>
+                </ul>
+            </div>
+            <div class="col-6 col-lg-2 mb-3">
+                <h5 style="color: #09143c">Supported By</h5>
+                <ul class="list-unstyled">
+                    <li class="mb-2"><a href="http://www.fidor.com/" style="text-decoration: none; color: #006eff;">Fidor</a></li>
+                    <li class="mb-2"><a href="https://www.alphavantage.co/" style="text-decoration: none; color: #006eff">AlphaVantage</a></li>
+                    <li class="mb-2"><a href="https://data.nasdaq.com/" style="text-decoration: none; color: #006eff">Nasdaq Data Link</a></li>
+                </ul>
+            </div>
+            <div class="col-6 col-lg-2 mb-3">
+                <h5 style="color: #09143c;">Partners</h5>
+                <ul class="list-unstyled">
+                    <li class="mb-2"><a href="https://www.tp.edu.sg/" style="text-decoration: none; color: #006eff;">Temasek Polytechnic</a></li>
+                    <li class="mb-2"><a href="https://www.tp.edu.sg/schools-and-courses/students/schools/iit.html" style="text-decoration: none; color: #006eff;">School of IIT</a></li>
+                    <li class="mb-2"><a href="mailto:yeewee@tp.edu.sg" style="text-decoration: none; color: #006eff;">Mr Alfred Teng Yee Wee (Lecturer)</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+</html>

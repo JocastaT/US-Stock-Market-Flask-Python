@@ -1,0 +1,384 @@
+<style>
+    .rtable {
+        /*!
+  // IE needs inline-block to position scrolling shadows otherwise use:
+  // display: block;
+  // max-width: min-content;
+  */
+        display: inline-block;
+        vertical-align: top;
+        max-width: 100%;
+        overflow-x: auto;
+        white-space: nowrap;
+        border-collapse: collapse;
+        border-spacing: 0;
+    }
+    
+    .rtable,
+    .rtable--flip tbody {
+        -webkit-overflow-scrolling: touch;
+        background: radial-gradient(left, ellipse, rgba(0, 0, 0, .2) 0%, rgba(0, 0, 0, 0) 75%) 0 center, radial-gradient(right, ellipse, rgba(0, 0, 0, .2) 0%, rgba(0, 0, 0, 0) 75%) 100% center;
+        background-size: 10px 100%, 10px 100%;
+        background-attachment: scroll, scroll;
+        background-repeat: no-repeat;
+    }
+    
+    .rtable td:first-child,
+    .rtable--flip tbody tr:first-child {
+        background-image: linear-gradient(to right, rgba(255, 255, 255, 1) 50%, rgba(255, 255, 255, 0) 100%);
+        background-repeat: no-repeat;
+        background-size: 20px 100%;
+    }
+    
+    .rtable td:last-child,
+    .rtable--flip tbody tr:last-child {
+        background-image: linear-gradient(to left, rgba(255, 255, 255, 1) 50%, rgba(255, 255, 255, 0) 100%);
+        background-repeat: no-repeat;
+        background-position: 100% 0;
+        background-size: 20px 100%;
+    }
+    
+    .rtable th {
+        font-size: 11px;
+        text-align: left;
+        text-transform: uppercase;
+        background: #f2f0e6;
+    }
+    
+    .rtable th,
+    .rtable td {
+        padding: 6px 12px;
+        border: 1px solid #d9d7ce;
+    }
+    
+    .rtable--flip {
+        display: flex;
+        overflow: hidden;
+        background: none;
+    }
+    
+    .rtable--flip thead {
+        display: flex;
+        flex-shrink: 0;
+        min-width: min-content;
+    }
+    
+    .rtable--flip tbody {
+        display: flex;
+        position: relative;
+        overflow-x: auto;
+        overflow-y: hidden;
+    }
+    
+    .rtable--flip tr {
+        display: flex;
+        flex-direction: column;
+        min-width: min-content;
+        flex-shrink: 0;
+    }
+    
+    .rtable--flip td,
+    .rtable--flip th {
+        display: block;
+    }
+    
+    .rtable--flip td {
+        background-image: none !important;
+        border-left: 0;
+    }
+    
+    .rtable--flip th:not(:last-child),
+    .rtable--flip td:not(:last-child) {
+        border-bottom: 0;
+    }
+    /*!
+// CodePen house keeping
+*/
+    
+    body {
+        margin: 0;
+        padding: 25px;
+        color: #494b4d;
+        font-size: 14px;
+        line-height: 20px;
+    }
+    
+    h1,
+    h2,
+    h3 {
+        margin: 0 0 10px 0;
+        color: #1d97bf;
+    }
+    
+    h1 {
+        font-size: 25px;
+        line-height: 30px;
+    }
+    
+    h2 {
+        font-size: 20px;
+        line-height: 25px;
+    }
+    
+    h3 {
+        font-size: 16px;
+        line-height: 20px;
+    }
+    
+    table {
+        margin-bottom: 30px;
+    }
+    
+    a {
+        color: #ff6680;
+    }
+    
+    code {
+        background: #fffbcc;
+        font-size: 12px;
+    }
+</style>
+<script>
+    if (/(iPhone|iPad|iPod)/gi.test(navigator.userAgent) && window.location.pathname.indexOf('/full') > -1) {
+        var p = document.createElement('p');
+        p.innerHTML = '';
+        document.body.insertBefore(p, document.body.querySelector('h1'));
+    }
+</script>
+{% include 'navbar.html' %}
+
+<div style="margin-top: 60px;">
+    <h1 style="margin-left: 70px;">Insights</h1>
+    <form style="margin-left: 70px;" action="actives" method="post">
+        <label>Key in stocks:</label>
+        <input type="text" id="stocks" name="stocks" placeholder="Eg. AAPL" value="">
+        <input type="submit" value="Submit"> </form>
+    {% include 'aapl.html' %}
+
+    <div style="margin-left: 70px;">
+        <h2>Stock Earnings</h2>
+        <table class="rtable">
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Symbol</th>
+                    <th>Actual Earnings</td>
+                        <th>Estimated Earnings</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{{date1}}</td>
+                    <td>{{symbol1e}}</td>
+                    <td>{{actualEarning1}}</td>
+                    <td>{{estEarning1}}</td>
+
+                </tr>
+                <tr>
+                    <td>{{date2}}</td>
+                    <td>{{symbol2e}}</td>
+                    <td>{{actualEarning2}}</td>
+                    <td>{{estEarning2}}</td>
+                </tr>
+                <tr>
+                    <td>{{date3}}</td>
+                    <td>{{symbol3e}}</td>
+                    <td>{{actualEarning3}}</td>
+                    <td>{{estEarning3}}</td>
+                </tr>
+                <tr>
+                    <td>{{date4}}</td>
+                    <td>{{symbol4e}}</td>
+                    <td>{{actualEarning4}}</td>
+                    <td>{{estEarning4}}</td>
+                </tr>
+
+            </tbody>
+        </table>
+
+
+        <h2>Stock Insiders</h2>
+
+
+
+        <table class="rtable">
+            <thead>
+                <tr>
+                    <th>Symbol</th>
+                    <th>Company Name</th>
+                    <th>No. of shares</td>
+                        <th>Price Change</th>
+                        <th>Transaction Price</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{{symbols1}}</td>
+                    <td>{{companys1}}</td>
+                    <td>{{shares1}}</td>
+                    <td>{{changes1}}</td>
+                    <td>{{transaction1}}</td>
+                </tr>
+                <tr>
+                    <td>{{symbols2}}</td>
+                    <td>{{companys2}}</td>
+                    <td>{{shares2}}</td>
+                    <td>{{changes2}}</td>
+                    <td>{{transaction2}}</td>
+                </tr>
+                <tr>
+                    <td>{{symbols3}}</td>
+                    <td>{{companys3}}</td>
+                    <td>{{shares3}}</td>
+                    <td>{{changes3}}</td>
+                    <td>{{transaction3}}</td>
+                </tr>
+                <tr>
+                    <td>{{symbols4}}</td>
+                    <td>{{companys4}}</td>
+                    <td>{{shares4}}</td>
+                    <td>{{changes4}}</td>
+                    <td>{{transaction4}}</td>
+                </tr>
+                <tr>
+                    <td>{{symbols5}}</td>
+                    <td>{{companys5}}</td>
+                    <td>{{shares5}}</td>
+                    <td>{{changes5}}</td>
+                    <td>{{transaction5}}</td>
+                </tr>
+                <tr>
+                    <td>{{symbols6}}</td>
+                    <td>{{companys6}}</td>
+                    <td>{{shares6}}</td>
+                    <td>{{changes6}}</td>
+                    <td>{{transaction6}}</td>
+                </tr>
+                <tr>
+                    <td>{{symbols7}}</td>
+                    <td>{{companys7}}</td>
+                    <td>{{shares7}}</td>
+                    <td>{{changes7}}</td>
+                    <td>{{transaction7}}</td>
+                </tr>
+                <tr>
+                    <td>{{symbols8}}</td>
+                    <td>{{companys8}}</td>
+                    <td>{{shares8}}</td>
+                    <td>{{changes8}}</td>
+                    <td>{{transaction8}}</td>
+                </tr>
+                <tr>
+                    <td>{{symbols9}}</td>
+                    <td>{{companys9}}</td>
+                    <td>{{shares9}}</td>
+                    <td>{{changes9}}</td>
+                    <td>{{transaction9}}</td>
+                </tr>
+                <tr>
+                    <td>{{symbols10}}</td>
+                    <td>{{companys10}}</td>
+                    <td>{{shares10}}</td>
+                    <td>{{changes10}}</td>
+                    <td>{{transaction10}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div style="margin-left: 70px;">
+
+    <h2>Active Stocks</h2>
+    <table class="rtable">
+        <thead>
+            <tr>
+                <th>Symbol</th>
+                <th>Company Name</th>
+                <th>Price Change</td>
+                    <th>Price</th>
+                    <th>Change in %</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{symbol1}}</td>
+                <td>{{company1}}</td>
+                <td>{{change1}}</td>
+                <td>{{price1}}</td>
+                <td>{{changePercent1}}</td>
+            </tr>
+            <tr>
+                <td>{{symbol2}}</td>
+                <td>{{company2}}</td>
+                <td>{{change2}}</td>
+                <td>{{price2}}</td>
+                <td>{{changePercent2}}</td>
+            </tr>
+            <tr>
+                <td>{{symbol3}}</td>
+                <td>{{company3}}</td>
+                <td>{{change3}}</td>
+                <td>{{price3}}</td>
+                <td>{{changePercent3}}</td>
+            </tr>
+
+            <tr>
+                <td>{{symbol4}}</td>
+                <td>{{company4}}</td>
+                <td>{{change4}}</td>
+                <td>{{price4}}</td>
+                <td>{{changePercent4}}</td>
+            </tr>
+
+            <tr>
+                <td>{{symbol5}}</td>
+                <td>{{company5}}</td>
+                <td>{{change5}}</td>
+                <td>{{price5}}</td>
+                <td>{{changePercent5}}</td>
+            </tr>
+
+            <tr>
+                <td>{{symbol6}}</td>
+                <td>{{company6}}</td>
+                <td>{{change6}}</td>
+                <td>{{price6}}</td>
+                <td>{{changePercent6}}</td>
+            </tr>
+
+            <tr>
+                <td>{{symbol7}}</td>
+                <td>{{company7}}</td>
+                <td>{{change7}}</td>
+                <td>{{price7}}</td>
+                <td>{{changePercent7}}</td>
+            </tr>
+            <tr>
+                <td>{{symbol8}}</td>
+                <td>{{company8}}</td>
+                <td>{{change8}}</td>
+                <td>{{price8}}</td>
+                <td>{{changePercent8}}</td>
+            </tr>
+            <tr>
+                <td>{{symbol9}}</td>
+                <td>{{company9}}</td>
+                <td>{{change9}}</td>
+                <td>{{price9}}</td>
+                <td>{{changePercent9}}</td>
+            </tr>
+            <tr>
+                <td>{{symbol10}}</td>
+                <td>{{company10}}</td>
+                <td>{{change10}}</td>
+                <td>{{price10}}</td>
+                <td>{{changePercent10}}</td>
+            </tr>
+
+        </tbody>
+    </table>
+</div>
+
+{% include 'footer.html' %}

@@ -1,0 +1,32 @@
+<html>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<body style="font-family: 'Product Sans'">
+    <h2 style="color: #09143c; margin-top: 90px;">U.S Stocks Purchase Email Receipt</h2>
+    <p style="color: #09143c; margin-top: 20px">Thank you for transacting with FIDOR Bank. Please find the Email Receipt of your Transaction attached below.</p>
+    <div class="row" style="justify-content: center; margin-top: 20px;">
+        <div class="card" style="width: 25rem; border-radius: 10px; border: 1px solid #09143c;  text-align: center;">
+            <div class="card-body">
+                <div class="row" style="justify-content: center; margin-top: 15px;">
+                    <div class="col-sm-5" style="color: #09143c; font-weight: bold; font-size: 15px;">Transaction ID:</div>
+                    <div class="col-sm-5" style="color: #bc9e38; font-weight: bold; font-size: 15px;">{{fTransactionID}}</div>
+                </div>
+                <div class="row" style="justify-content: center; margin-top: 15px;">
+                    <div class="col-sm-5" style="color: #09143c; font-weight: bold; font-size: 15px;">Transaction Date:</div>
+                    <div class="col-sm-5" style="color: #bc9e38; font-weight: bold; font-size: 15px;">{{createdTime}}</div>
+                </div>
+
+                <div class="row" style="justify-content: center; margin-top: 15px; margin-bottom: 15px;">
+                    <div class="col-sm-5" style="color: #09143c; font-weight: bold; font-size: 15px;">Transaction Amount:</div>
+                    <div class="col-sm-5" style="color: #bc9e38; font-weight: bold; font-size: 15px;">SGD ${{famount}}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,35 @@
+{% include 'navbar.html' %}
+<div style="margin-top: 90px; width: 95%; margin-left: 40px;">
+    <h1>Stocks owned</h1>
+    <a class="btn btn-success" href="transfer">Buy Stocks</a>
+    <hr>
+    <table class="table table-striped">
+        <tr>
+            <th>ID</th>
+            <th>Symbol</th>
+            <th>No. of stocks</th>
+            <th>Market Price bought at</th>
+            <th>Total amount of stocks</th>
+            <th>Bought at</th>
+            <th></th>
+            <th></th>
+        </tr>
+        {% for stock in stocks %}
+        <tr>
+            <td>{{stock.id}}</td>
+            <td>{{stock.symbol}}</td>
+            <td>{{stock.stocksNo}}</td>
+            <td>{{stock.marketPrice}}</td>
+            <td>{{stock.totalAmt}}</td>
+            <td>{{stock.date}}</td>
+
+
+
+            <td>
+
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+{% include 'footer.html' %}

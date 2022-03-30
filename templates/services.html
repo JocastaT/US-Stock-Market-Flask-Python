@@ -1,0 +1,102 @@
+<!--from w3school v4 of the bootstrap need to have this 4 LINES!! to use it-->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+{% include 'navbar.html' %}
+<div class="card" style="width: 50rem;">
+
+    <div class="card-body">
+        <h5 class="card-title">Hello, {{ fFirstName }} {{ fLastName }}</h5>
+        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+        <dl class="row">
+            <dt class="col-sm-3">FIDOR ID</dt>
+            <dd class="col-sm-9">{{fID}}</dd>
+            <dt class="col-sm-3">FIDOR Bank Account</dt>
+            <dd class="col-sm-9">{{fAccountNo}}</dd>
+            <dt class="col-sm-3">Balance</dt>
+            <dd class="col-sm-9">$ {{fBalance}}</dd>
+        </dl>
+
+    </div>
+</div>
+<br>
+<br>
+
+<div class="row">
+    <div class="col-sm-6">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Equity (U.S.)</h5>
+                <p class="card-text">U.S. Equities only</p>
+                <a href="#" class="btn btn-primary">Proceed</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-6">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Equity (Shanghai)</h5>
+                <p class="card-text">Shanghai Equities only with ticker code postfix .SHH or .SS, i.e. 600000.SS)*+</p>
+                <a href="#" class="btn btn-primary">Proceed</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-6">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Foreign Exchange</h5>
+                <p class="card-text">EUR/SGD, GBP/SGD and USD/SGD</p>
+                <a href="#" class="btn btn-primary">Proceed</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-6">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Cryptocurrency</h5>
+                <p class="card-text">BTC, XRP and ETH</p>
+                <a href="#" class="btn btn-primary">Proceed</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-6">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Precious Metal</h5>
+                <p class="card-text">Platinum, Gold and Silver</p>
+                <a href="#" class="btn btn-primary">Proceed</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-6">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Transaction</h5>
+                <p class="card-text">Internal transaction using FIDOR</p>
+                <a href="#" class="btn btn-primary">View</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-6">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">History</h5>
+                <p class="card-text">Transaction History</p>
+                <a href="#" class="btn btn-primary">View</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-6">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Profile</h5>
+                <p class="card-text">Personal Details and Background Information</p>
+                <a href="#" class="btn btn-primary">View</a>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+{% include 'footer.html' %}
