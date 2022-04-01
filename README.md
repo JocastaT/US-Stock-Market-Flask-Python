@@ -22,8 +22,13 @@ pip install ...
    * Yahoo Finance – create an interactive linear graph using Plotly based on different time period, retrieve stock information
    * MySQL Database – store stocks user purchased, retrieve stocks purchased for user reference
    * Flask Email
+   
+### Executing program
+* Run XAMPP - Apache and MySQL
+* Postman
+* VSC Python
 
 ## Authors
 
 Contributors names and contact info
-ex. Jocasta Tan
+* Jocasta Tan
