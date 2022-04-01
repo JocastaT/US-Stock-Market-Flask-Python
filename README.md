@@ -14,8 +14,16 @@ Check out this user guide.
 
 ### Installing
 
-* How/where to download your program
-* Any modifications needed to be made to files/folders
+* Download Python 3.10.2
+* pip install all listed packages
+* Integration of APIs include:
+	Fidor Bank – retrieve user personal information and account details, make transactions to buy stocks and view past transactions
+	Polygon.io – retrieve latest stock news
+	Financial Modeling Prep – retrieve the more popular stocks ranked by highest market cap to lowest, plot the interactive Candlestick graph, get the most active stocks, get stock earnings quarterly,
+	Finage – get the daily price percentage changes
+	Finnhub.io – get stock insiders transactions
+	Yahoo Finance – create an interactive linear graph using Plotly based on different time period, retrieve stock information
+	MySQL Database – store stocks user purchased, retrieve stocks purchased for user reference
 
 ### Executing program
 
