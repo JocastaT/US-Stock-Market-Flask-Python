@@ -32,3 +32,5 @@ pip install ...
 
 Contributors names and contact info
 * Jocasta Tan
+* jocastatan0171@gmail.com
+* https://www.linkedin.com/in/jocasta-tan-4b67161a7/
